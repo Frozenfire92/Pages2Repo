@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Pages2Repo",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Opens the corresponding repository from a GitHub Page",
+    "description": "The description of the application"
+  }
+}
