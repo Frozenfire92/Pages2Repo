@@ -1,3 +1,149 @@
-body {
-  padding: 5px;
+#pages-2-repo-content {
+    display: none;
 }
+
+.pages-2-repo-popup {
+  background: #fff;
+  width: 300px;
+  height: 120px;
+  position: relative;
+  margin: 0px;
+  font-size: 1.15em;
+}
+
+.pages-2-repo-profile-img {
+  background-color: green;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 48px;
+  height: 48px;
+}
+
+.pages-2-repo-profile-img > img {
+  width: 100%;
+  height: auto;
+}
+
+.long-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pages-2-repo-repo {
+  position: absolute;
+  left: 60px;
+  top: 5px;
+  width: 75%;
+}
+
+#pages-2-repo-description {
+  position: absolute;
+  top: 25px;
+  left: 60px;
+  width: 75%;
+}
+
+.pages-2-repo-quick-stats {
+    bottom: 5px;
+    left: 5px;
+    position: absolute;
+}
+
+.octicon {
+    /*margin-left: 5px;*/
+}
+
+button {
+  color: #6496c8;
+  background: rgba(0,0,0,0);
+  border: solid 2px #6496c8;
+}
+button:hover,
+button.hover {
+  border-color: #346392;
+  color: #346392;
+}
+button:active,
+button.active {
+  border-color: #27496d;
+  color: #27496d;
+}
+
+/*
+Loading from http://codepen.io/boris-graeff/pen/bdBXmj
+*/
+#pages-2-repo-loader {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  width: 90px;
+  margin-top: 25px;
+}
+#pages-2-repo-loader ul {
+  margin: 0;
+  list-style: none;
+  width: 90px;
+  height: 65px;
+  position: relative;
+  padding: 0;
+  height: 10px;
+}
+#pages-2-repo-loader ul li {
+  position: absolute;
+  width: 2px;
+  height: 0;
+  background-color: #000;
+  bottom: 0;
+}
+@keyframes sequence1 {
+  0% {
+    height: 10px;
+  }
+  50% {
+    height: 50px;
+  }
+  100% {
+    height: 10px;
+  }
+}
+@keyframes sequence2 {
+  0% {
+    height: 20px;
+  }
+  50% {
+    height: 65px;
+  }
+  100% {
+    height: 20px;
+  }
+}
+#pages-2-repo-loader li:nth-child(1) {
+  left: 0;
+  animation: sequence1 1s ease infinite 0;
+}
+#pages-2-repo-loader li:nth-child(2) {
+  left: 15px;
+  animation: sequence2 1s ease infinite 0.1s;
+}
+#pages-2-repo-loader li:nth-child(3) {
+  left: 30px;
+  animation: sequence1 1s ease-in-out infinite 0.2s;
+}
+#pages-2-repo-loader li:nth-child(4) {
+  left: 45px;
+  animation: sequence2 1s ease-in infinite 0.3s;
+}
+#pages-2-repo-loader li:nth-child(5) {
+  left: 60px;
+  animation: sequence1 1s ease-in-out infinite 0.4s;
+}
+#pages-2-repo-loader li:nth-child(6) {
+  left: 75px;
+  animation: sequence2 1s ease infinite 0.5s;
+}
+
+

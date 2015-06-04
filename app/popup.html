@@ -2,24 +2,45 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!-- build:css styles/vendor.css -->
-        <!-- bower:css -->
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="lib/octicons/octicons/octicons.css">
         <link href="styles/main.css" rel="stylesheet">
-        <!-- endbuild -->
     </head>
-    <body>
-        <h1>'Allo, 'Allo!</h1>
 
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <!-- endbower -->
-        <!-- endbuild -->
+    <body class="pages-2-repo-popup">
 
-        <!-- build:js scripts/popup.js -->
+        <div id="pages-2-repo-loader">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+
+        <div id="pages-2-repo-content">
+            <div class="pages-2-repo-profile-img">
+                <img id="pages-2-repo-image" src="https://avatars.githubusercontent.com/u/5893112?v=3">
+            </div>
+            <div class="pages-2-repo-repo long-text">
+                <span class="octicon octicon-repo"></span>
+                <span id="pages-2-repo-fullrepo"></span>
+            </div>
+
+            <div id="pages-2-repo-description" class="long-text">Live editor for JSON Resume http://registry.jsonresume.org/</div>
+
+            <div class="pages-2-repo-quick-stats">
+                <span class="octicon octicon-star"></span> <span id="pages-2-repo-stars">12K0</span>
+                <span class="octicon octicon-eye"></span> <span id="pages-2-repo-watchers">100K</span>
+                <br>
+                <span class="octicon octicon-repo-forked"></span> <span id="pages-2-repo-forks">8000</span>
+                <span class="octicon octicon-issue-opened"></span> <span id="pages-2-repo-issues">4500</span>
+                <span class="octicon octicon-clippy" style="margin-left: 15px"></span> <button id="pages-2-repo-ssh">SSH</button><button id="pages-2-repo-https">HTTPS</button>
+            </div>
+        </div>
+
+        <script src="lib/url/url-1.0.4.min.js"></script>
         <script src="scripts/popup.js"></script>
-        <!-- endbuild -->
     </body>
 </html>

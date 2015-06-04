@@ -1,20 +1,23 @@
 {
-    "name": "__MSG_appName__",
-    "version": "0.0.21",
+    "name": "Pages2Repo",
+    "description": "Opens the corresponding repository from a GitHub Page",
+    "version": "0.0.1",
     "manifest_version": 2,
-    "description": "__MSG_appDescription__",
+
     "icons": {
         "16": "images/icon-16.png",
         "128": "images/icon-128.png"
     },
-    "default_locale": "en",
+
+
     "background": {
         "scripts": [
-            "scripts/chromereload.js",
-            "scripts/vendor/url-1.0.4.min.js",
+            "lib/url/url-1.0.4.min.js",
             "scripts/background.js"
         ]
     },
+
+
     "page_action": {
         "default_icon": {
             "19": "images/icon-19.png",
@@ -23,6 +26,8 @@
         "default_title": "Pages2Repo",
         "default_popup": "popup.html"
     },
+
+
     "permissions": [
         "tabs",
         "http://*/*",
