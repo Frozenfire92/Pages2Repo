@@ -45,7 +45,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
             document.getElementById("pages-2-repo-forks").innerHTML = response.forks;
             document.getElementById("pages-2-repo-issues").innerHTML = response.open_issues;
             document.getElementById("pages-2-repo-image").setAttribute("src", response.owner.avatar_url);
-            document.getElementById("pages-2-repo-conent").style.display = '';
+            document.getElementById("pages-2-repo-content").style.display = 'block';
             document.getElementById("pages-2-repo-loader").style.display = 'none';
         } else {
             console.log('oh noes', this);

@@ -12,7 +12,6 @@
 
     "background": {
         "scripts": [
-            "lib/url/url-1.0.4.min.js",
             "scripts/background.js"
         ]
     },

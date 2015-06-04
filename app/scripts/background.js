@@ -5,37 +5,30 @@ chrome.runtime.onInstalled.addListener(function (details) {
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    // console.log('onUpdate tab', tabId, changeInfo, tab);
 
-    var urlObject = url.parse(tab.url);
-    var pagesRegex = /.*?\.github\.io/i;
-    var isPage = pagesRegex.test(urlObject.host);
-    // console.log('is page', isPage, urlObject);
+    // This may be called multiple times while loading the page, wait until completely loaded
+    if (tab.status == "complete"){
 
-    if (isPage){
+        // Check for github pages
+        var pagesRegex = /.*?\.github\.io/i;
+        var isPage = pagesRegex.test(tab.url);
 
-        var userRegex = /^(.*)?\.github\.io/i;
-        var user = userRegex.exec(urlObject.host);
+        if (isPage){
+            //Get the username and repository
+            var userRepoRegex = /http[s]?:\/\/(.*)?\.github\.io\/?([a-zA-z\-]*).*/i;
+            var userRepo = userRepoRegex.exec(tab.url);
+            var userRepoObj = {'username': userRepo[1], "repo": (userRepo[2]) ? userRepo[2] : userRepo[1] + ".github.io"};
 
-        var repoRegex = /^\/(.*?)\/.*/i;
-        var repo = repoRegex.exec(urlObject.path);
+            console.log(userRepoObj);
 
-        console.log({'username': user, "repo": repo});
-
-        if (user && repo) {
+            //Set the title of the page action
             chrome.pageAction.setTitle({
                 tabId: tabId,
-                title: "github.com/"+user[1]+"/"+repo[1]
+                title: "github.com/"+userRepoObj.username+"/"+userRepoObj.repo
             });
-        }
 
-        else if (user && !repo) {
-            chrome.pageAction.setTitle({
-                tabId: tabId,
-                title: "github.com/"+user[1]+"/"+user[1]+".github.io"
-            });
+            //Enable the page action button
+            chrome.pageAction.show(tabId);
         }
-
-        chrome.pageAction.show(tabId);
     }
 });
