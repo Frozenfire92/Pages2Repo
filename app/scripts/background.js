@@ -2,6 +2,26 @@
 
 chrome.runtime.onInstalled.addListener(function (details) {
     console.log('previousVersion', details.previousVersion);
+
+    var redirectUri = chrome.identity.getRedirectURL("github");
+    console.log('redirect uri', redirectUri);
+
+    var client_id = "c5c34888e584fd777a12";
+
+    var auth_url = "https://github.com/login/oauth/authorize?client_id="+client_id+
+         "&redirect_uri="+ encodeURIComponent(redirectUri) +
+         "&response_type=token";
+
+    chrome.identity.launchWebAuthFlow(
+        {'url': auth_url, 'interactive': true},
+        function(redirect_url) {
+            chrome.identity.getRedirectURL(redirect_url);
+            console.log('auth', redirect_url);
+            var tokenRegex = /code=(.*)/i;
+            var token = tokenRegex.exec(redirect_url);
+            console.log('token', token[1]);
+        }
+    );
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {

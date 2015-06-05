@@ -29,7 +29,9 @@
 
     "permissions": [
         "tabs",
+        "identity",
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "https://github.com/"
     ]
 }
