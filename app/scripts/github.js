@@ -3,23 +3,25 @@ var client_secret = "9f03e925435870a9608c30294284cb96132a721f";
 var redirectUri = chrome.identity.getRedirectURL("github");
 
 function getToken(){
+    // Check local storage for existing token
     chrome.storage.local.get("token", function(item){
-        console.log('the item', item, (item.hasOwnProperty('token')) ? true:false);
         // No token, retrieve
         if (!item.hasOwnProperty('token')) {
-            // Launch auth window
+            // Setup url to query
             var auth_url = "https://github.com/login/oauth/authorize?client_id="+client_id+
                            "&redirect_uri="+ encodeURIComponent(redirectUri) +
                            "&response_type=token";
+            // Launch auth window
             chrome.identity.launchWebAuthFlow(
                 {'url': auth_url, 'interactive': true},
                 function(redirect_url) {
-                    chrome.identity.getRedirectURL(redirect_url);
-                    console.log('auth', redirect_url);
+                    // chrome.identity.getRedirectURL(redirect_url);
+                    // console.log('auth', redirect_url);
                     var codeRegex = /code=(.*)/i;
                     var code = codeRegex.exec(redirect_url);
-                    console.log('code', code[1]);
+                    // console.log('code', code[1]);
 
+                    // Exchange our code for a token
                     var request = new XMLHttpRequest();
                     request.open('GET',
                              'https://github.com/login/oauth/access_token?' +
@@ -30,15 +32,15 @@ function getToken(){
                     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     request.setRequestHeader('Accept', 'application/json');
                     request.onload = function () {
-                      // When exchanging code for token, the response comes as json, which
-                      // can be easily parsed to an object.
                       if (this.status === 200) {
                         var response = JSON.parse(this.responseText);
                         console.log(response);
-                        if (response.hasOwnProperty('access_token')) {
-                          chrome.storage.local.set({"token": response.access_token});
-                        } else {
 
+                        // If we got a token returned save to local storage
+                        if (response.hasOwnProperty('access_token')) {
+                            chrome.storage.local.set({"token": response.access_token});
+                        } else {
+                            console.log('no access token recieved');
                         }
                       } else {
                         console.log('code exchange status:', this.status);
@@ -48,8 +50,8 @@ function getToken(){
                 }
             );
         }
-        else { //token, return
-            console.log('token', item);
+        else { // Already have token, return
+            return;
         }
     })
 }
@@ -73,6 +75,7 @@ function queryRepo(username, repository, tabId){
                 var full_name = ((response.full_name).toLowerCase()).replace(/(\.|\/)/g,'_');
 
                 var storageObj = {
+                    full_name: response.full_name,
                     description: response.description,
                     stars: response.stargazers_count,
                     watchers: response.watchers,
@@ -88,17 +91,17 @@ function queryRepo(username, repository, tabId){
                 repoObj[full_name] = storageObj;
                 console.log('repoObj', repoObj);
 
+                //Save object and enable the page action button
                 chrome.storage.local.set(repoObj, function(){
-                    //Enable the page action button
                     chrome.pageAction.show(tabId);
                 });
             } else {
-                console.log('oh noes', this);
+                console.log('Error retrieving repo info', this);
             }
         };
 
         request.onerror = function() {
-            console.log('oh noes onerror', this);
+            console.log('Error retrieving repo info', this);
         };
 
         request.send();

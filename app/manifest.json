@@ -5,8 +5,8 @@
     "manifest_version": 2,
 
     "icons": {
-        "16": "images/icon-16.png",
-        "128": "images/icon-128.png"
+        "16": "images/repo-16.png",
+        "128": "images/repo-128.png"
     },
 
 
@@ -14,14 +14,15 @@
         "scripts": [
             "scripts/github.js",
             "scripts/background.js"
-        ]
+        ],
+        "persistent": false
     },
 
 
     "page_action": {
         "default_icon": {
-            "19": "images/icon-19.png",
-            "38": "images/icon-38.png"
+            "19": "images/repo-19.png",
+            "38": "images/repo-38.png"
         },
         "default_title": "Pages2Repo",
         "default_popup": "popup.html"
