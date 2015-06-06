@@ -3,25 +3,10 @@
 chrome.runtime.onInstalled.addListener(function (details) {
     console.log('previousVersion', details.previousVersion);
 
-    var redirectUri = chrome.identity.getRedirectURL("github");
-    console.log('redirect uri', redirectUri);
+    chrome.storage.local.clear(function(){
+        getToken();
+    });
 
-    var client_id = "c5c34888e584fd777a12";
-
-    var auth_url = "https://github.com/login/oauth/authorize?client_id="+client_id+
-         "&redirect_uri="+ encodeURIComponent(redirectUri) +
-         "&response_type=token";
-
-    chrome.identity.launchWebAuthFlow(
-        {'url': auth_url, 'interactive': true},
-        function(redirect_url) {
-            chrome.identity.getRedirectURL(redirect_url);
-            console.log('auth', redirect_url);
-            var tokenRegex = /code=(.*)/i;
-            var token = tokenRegex.exec(redirect_url);
-            console.log('token', token[1]);
-        }
-    );
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -41,14 +26,28 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
             console.log(userRepoObj);
 
-            //Set the title of the page action
-            chrome.pageAction.setTitle({
-                tabId: tabId,
-                title: "github.com/"+userRepoObj.username+"/"+userRepoObj.repo
+
+            var storageKey = (userRepoObj.username + "_" + (userRepoObj.repo).replace(/(\.|\/)/g,'_')).toLowerCase();
+            console.log('storageKey', storageKey);
+            chrome.storage.local.get(storageKey, function(data){
+                console.log('checking for existing repo info', data);
+                if (!data.hasOwnProperty(storageKey)){
+                    //Query repo
+                    queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
+                }
+                else {
+                    if (Date.now() - data[storageKey].time_accessed >= 86400000){
+                        console.log('old, reget info');
+                        //Query repo
+                        queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
+                    } else {
+                        console.log('too new dont hit api');
+                    }
+                }
+
             });
 
-            //Enable the page action button
-            chrome.pageAction.show(tabId);
+
         }
     }
 });
