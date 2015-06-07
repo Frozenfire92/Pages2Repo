@@ -1,3 +1,12 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
 #pages-2-repo-content {
     display: none;
 }
@@ -12,7 +21,6 @@
 }
 
 .pages-2-repo-profile-img {
-  background-color: green;
   position: absolute;
   top: 5px;
   left: 5px;
@@ -20,7 +28,7 @@
   height: 48px;
 }
 
-.pages-2-repo-profile-img > img {
+.pages-2-repo-profile-img > a > img {
   width: 100%;
   height: auto;
 }
@@ -40,32 +48,29 @@
 
 #pages-2-repo-description {
   position: absolute;
-  top: 25px;
+  top: 28px;
   left: 60px;
   width: 75%;
 }
 
 .pages-2-repo-quick-stats {
-    bottom: 5px;
-    left: 5px;
+    top: 52px;
+    left: 7px;
     position: absolute;
     width: 100%;
 }
 
-button {
-  color: #6496c8;
-  background: rgba(0,0,0,0);
-  border: solid 2px #6496c8;
+.pages-2-repo-stat-block {
+    width: 23%;
+    display: inline-block;
+    font-size: 0.8em;
 }
-button:hover,
-button.hover {
-  border-color: #346392;
-  color: #346392;
-}
-button:active,
-button.active {
-  border-color: #27496d;
-  color: #27496d;
+
+.pages-2-repo-clone-box {
+    position: absolute;
+    bottom: 7px;
+    left: 14px;
+    width: 95%;
 }
 
 /*

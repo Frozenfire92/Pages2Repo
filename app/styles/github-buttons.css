@@ -4,7 +4,6 @@
  * http://github.com/necolas/css3-github-buttons
  * --------------------------------------- */
 
-
 /* =============================================================================
    Base Button
    ========================================================================== */
@@ -63,26 +62,14 @@
     background-image: linear-gradient(#3072b3, #599bdc);
 }
 
-.button.no-hover:hover,
-.button.no-hover:focus,
-.button.no-hover:active {
-    border-color: #3072b3;
-    border-bottom-color: #2a65a0;
-    text-decoration: none;
-    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
-    color: #fff;
-    background-color: #3c8dde;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
-    background-image: -moz-linear-gradient(#599bdc, #3072b3);
-    background-image: -o-linear-gradient(#599bdc, #3072b3);
-    background-image: linear-gradient(#599bdc, #3072b3);
+.button.big {
+    font-size: 30px;
+    height: 100%
 }
-
 
 /* =============================================================================
    Button groups
    ========================================================================== */
-
 /* Standard group
    ========================================================================== */
 
@@ -91,9 +78,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    /* IE hacks */
-    zoom: 1;
-    *display: inline;
+    float: right;
+    margin-right: 10px;
 }
 
 .button + .button,
@@ -152,15 +138,13 @@
     background-color: #3072b3;
 }
 
-.button-group.minor-group .button.icon:before {
-    opacity: 0.8;
-}
-
-/* =============================================================================
-   Button container (mixing buttons and groups, e.g., nav bar)
-   ========================================================================== */
-
-.button-container .button,
-.button-container .button-group {
-    vertical-align: top;
+.button.no-hover:hover,
+.button.no-hover:focus,
+.button.no-hover:active {
+    border-color: #d4d4d4;
+    text-decoration: none;
+    text-shadow: none;
+    color: #000;
+    background-color: #fff !important;
+    cursor: default;
 }

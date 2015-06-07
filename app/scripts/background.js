@@ -1,11 +1,26 @@
 'use strict';
 
-chrome.runtime.onInstalled.addListener(function (details) {
-    console.log('previousVersion', details, details.previousVersion);
+//--- Start Google Analytics
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-63782941-1']);
 
-    // Clear local storage then get a new token
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+//--- End Google Analytics
+
+chrome.runtime.onInstalled.addListener(function (details) {
+    // Send update/install info to google
+    if (details.previousVersion) _gaq.push(['_trackEvent', 'Updated from', details.previousVersion]);
+    else _gaq.push(['_trackEvent', 'Installed at', chrome.runtime.getManifest().version]);
+
+    // Clear local storage then get open the signin page
     chrome.storage.local.clear(function(){
-        getToken();
+        chrome.tabs.create({
+            url: 'signin.html'
+        });
     });
 });
 
@@ -39,11 +54,11 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                 else { //Else we do have repos info
                     // If older than a day
                     if (Date.now() - data[storageKey].time_accessed >= 86400000){
-                        console.log('old, reget info');
                         //Query repo
+                        _gaq.push(['_trackEvent', 'Repo is old, update info', Date.now() - data[storageKey].time_accessed]);
                         queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
                     } else { // Else under a day old
-                        // console.log('too new dont hit api');
+                        _gaq.push(['_trackEvent', 'Repo is fresh, keep info', data[storageKey].full_name]);
                         //Set the title of the page action
                         chrome.pageAction.setTitle({
                             tabId: tabId,

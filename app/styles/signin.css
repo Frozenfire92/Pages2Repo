@@ -1,0 +1,34 @@
+body {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    width: 50%;
+    margin: 200px auto;
+    text-align: center;
+    font-size: 2em;
+}
+
+.bottom-stats {
+    position: absolute;
+    bottom: 25px;
+    margin-top: 50px;
+    font-size: 0.55em;
+    text-align: left;
+    left: 25px;
+}
+
+#good {
+    display: none;
+}
+
+#error {
+    display: none;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3498db;
+}
