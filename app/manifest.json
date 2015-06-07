@@ -36,8 +36,7 @@
         "storage",
         "tabs",
         "identity",
-        "http://*/*",
-        "https://*/*",
+        "https://*.github.io/*",
         "https://github.com/"
     ]
 }
