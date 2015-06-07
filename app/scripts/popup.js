@@ -11,6 +11,7 @@ _gaq.push(['_setAccount', 'UA-63782941-1']);
 })();
 //--- End Google Analytics
 
+// Copies str to the clipboard (newest versions of chrome only I think)
 function copy(str, mimetype) {
     // console.log('copy', str, mimetype);
     document.oncopy = function(event) {
@@ -20,6 +21,7 @@ function copy(str, mimetype) {
     document.execCommand("Copy", false, null);
 }
 
+// Makes a number readable with K/M appended
 function readableNumber(number){
     if (number >= 10000 && number < 1000000) return Math.floor(number / 1000) + "K";
     else if (number >= 1000000) return (number / 1000000).toFixed(1) + "M";
@@ -29,7 +31,7 @@ function readableNumber(number){
 window.onload = getInfoFromStorage;
 
 function getInfoFromStorage(){
-    // Get title for current tab
+    // Get title for current tab and find corresponding repo info from storage
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
         var currentTab = tabs[0];
 

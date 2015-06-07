@@ -38,7 +38,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             var userRepoRegex = /http[s]?:\/\/([\da-zA-Z\-]*)?\.github\.io\/?([\da-zA-Z\-\.]*).*/i;
             var userRepo = userRepoRegex.exec(tab.url);
             var userRepoObj = {'username': userRepo[1], "repo": (userRepo[2]) ? userRepo[2] : userRepo[1] + ".github.io"};
-
             // console.log(userRepoObj);
 
             // Check localstorage if we already have this repo's info
@@ -48,7 +47,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                 // console.log('checking for existing repo info', data);
                 // If we don't have this repos info
                 if (!data.hasOwnProperty(storageKey)){
-                    //Query repo
                     queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
                 }
                 else { //Else we do have repos info
