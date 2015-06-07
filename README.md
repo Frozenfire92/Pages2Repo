@@ -2,7 +2,7 @@
 
 ![Address Bar](screenshots/bar.png)
 
-A simple chrome extension that checks the current tab if it is a GitHub pages link (username.github.io/[reponame]). If one is found it will query the GitHub API for info about the repository. You can then click the repository icon in the address bar for a popup with info about the repository as well as links to
+A simple chrome extension that checks the current tab if it is a GitHub pages link (username.github.io[/reponame]). If one is found it will query the GitHub API for info about the repository. You can then click the repository icon in the address bar for a popup with info about the repository as well as links to
 - Owners profile (image)
 - Repository page
 - Stars
@@ -10,8 +10,6 @@ A simple chrome extension that checks the current tab if it is a GitHub pages li
 - Forks
 - Issues
 - SSH/HTTPS Clone url (clicking the button will copy to your clipboard (new versions of chrome only?))
-
-
 
 ![Popup](screenshots/popup.png)
 
