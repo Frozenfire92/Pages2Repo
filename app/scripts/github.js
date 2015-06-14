@@ -38,7 +38,7 @@ function queryRepo(username, repository, tabId){
                         full_name: response.full_name,
                         description: response.description,
                         stars: response.stargazers_count,
-                        watchers: response.watchers,
+                        watchers: response.subscribers_count,
                         forks: response.forks,
                         issues: response.open_issues,
                         image: response.owner.avatar_url,
