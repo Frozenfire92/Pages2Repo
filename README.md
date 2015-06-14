@@ -17,4 +17,6 @@ A simple chrome extension that checks the current tab if it is a GitHub pages li
 Download from the [chrome webstore](https://chrome.google.com/webstore/detail/pages2repo/afnogakjnebbgcbjkgmhaccljfejeflh)
 
 ## Development
-You will need to create your own github app and get its corresponding credentials as the redirect URI is unique to each chrome app id. Unless you get it from the webstore you will have a unique id when installing the extension
+- Fork/Clone the repository
+- Review [Chrome extension documentation](https://developer.chrome.com/extensions)
+- Hack away
