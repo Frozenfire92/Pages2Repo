@@ -39,6 +39,7 @@
         "storage",
         "tabs",
         "identity",
+        "clipboardWrite",
         "https://*.github.io/*",
         "https://github.com/"
     ]

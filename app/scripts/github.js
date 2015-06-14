@@ -10,7 +10,7 @@ _gaq.push(['_setAccount', 'UA-63782941-1']);
 //--- End Google Analytics
 
 function queryRepo(username, repository, tabId){
-    chrome.storage.local.get('token', function(token){
+    chrome.storage.sync.get('token', function(token){
         // No token, retrieve
         if (!token.hasOwnProperty('token')){
             chrome.tabs.create({

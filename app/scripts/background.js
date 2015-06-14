@@ -14,26 +14,14 @@ chrome.runtime.onInstalled.addListener(function (details) {
     if (details.previousVersion){ _gaq.push(['_trackEvent', 'Updated from', details.previousVersion]); }
     else { _gaq.push(['_trackEvent', 'Installed at', chrome.runtime.getManifest().version]); }
 
-    // TODO: remove this in the future
-    // if on an old version using oauth, clear local storage
-    if (details.previousVersion && (details.previousVersion == "0.1.0" || details.previousVersion == "0.1.1")){
-        // console.log('old version');
-        chrome.storage.local.clear(function(){
+    chrome.storage.sync.get('token', function(token){
+        // No token, retrieve
+        if (!token.hasOwnProperty('token')){
             chrome.tabs.create({
                 url: 'token.html'
             });
-        });
-    }
-    else { //newer version, check for tokens existence
-        chrome.storage.local.get('token', function(token){
-            // No token, retrieve
-            if (!token.hasOwnProperty('token')){
-                chrome.tabs.create({
-                    url: 'token.html'
-                });
-            }
-        });
-    }
+        }
+    });
 
 });
 
