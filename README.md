@@ -20,3 +20,11 @@ Download from the [chrome webstore](https://chrome.google.com/webstore/detail/pa
 - Fork/Clone the repository
 - Review [Chrome extension documentation](https://developer.chrome.com/extensions)
 - Hack away
+
+## Release
+Uses [Grunt](http://gruntjs.com/) to minify code, bump version number, and create a zip
+
+```
+npm Install
+grunt
+```

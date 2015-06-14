@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-    // Project configuration.
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -64,16 +63,45 @@ module.exports = function(grunt) {
                     }
                 ],
             },
-        }
+        },
+
+        zip: {
+            main: {
+                cwd: 'dist/',
+                src: ['dist/**'],
+                dest: 'pages2repo.zip'
+              }
+        },
+
+        bump: {
+            options: {
+                files: ['package.json', 'app/manifest.json'],
+                updateConfigs: [],
+                commit: false,
+                createTag: false,
+                push: false,
+                globalReplace: false,
+                prereleaseName: false,
+                regExp: false
+            }
+        },
+
+        clean: ["pages2repo.zip", "dist/**"]
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-bump');
 
-    // Default task(s).
-    grunt.registerTask('default', ['uglify', 'cssmin', 'htmlmin', 'copy']);
-
+    grunt.registerTask('default', function(){
+        grunt.task.run('clean');
+        grunt.task.run('bump');
+        grunt.task.run(['uglify', 'cssmin', 'htmlmin']);
+        grunt.task.run('copy');
+        grunt.task.run('zip');
+    });
 };
