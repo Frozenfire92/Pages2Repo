@@ -86,7 +86,17 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ["pages2repo.zip", "dist/**"]
+        clean: ["pages2repo.zip", "dist/**"],
+
+        jscs: {
+            src: "app/scripts/*.js",
+            options: {
+                config: true,
+                esnext: false, // If you use ES6 http://jscs.info/overview.html#esnext
+                verbose: true, // If you need output with rule names http://jscs.info/overview.html#verbose
+                requireCurlyBraces: [ "if" ]
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -96,12 +106,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks("grunt-jscs");
 
-    grunt.registerTask('default', function(){
+    grunt.registerTask('default', ['jscs']);
+    grunt.registerTask('style', ['jscs']);
+
+    grunt.registerTask('build', function(){
         grunt.task.run('clean');
         grunt.task.run('bump');
         grunt.task.run(['uglify', 'cssmin', 'htmlmin']);
         grunt.task.run('copy');
         grunt.task.run('zip');
     });
+
 };

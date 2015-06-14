@@ -11,8 +11,8 @@ _gaq.push(['_setAccount', 'UA-63782941-1']);
 
 chrome.runtime.onInstalled.addListener(function (details) {
     // Send update/install info to google
-    if (details.previousVersion) _gaq.push(['_trackEvent', 'Updated from', details.previousVersion]);
-    else _gaq.push(['_trackEvent', 'Installed at', chrome.runtime.getManifest().version]);
+    if (details.previousVersion){ _gaq.push(['_trackEvent', 'Updated from', details.previousVersion]); }
+    else { _gaq.push(['_trackEvent', 'Installed at', chrome.runtime.getManifest().version]); }
 
     // TODO: remove this in the future
     // if on an old version using oauth, clear local storage

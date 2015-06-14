@@ -21,8 +21,8 @@ function copy(str, mimetype) {
 
 // Makes a number readable with K/M appended
 function readableNumber(number){
-    if (number >= 10000 && number < 1000000) return Math.floor(number / 1000) + "K";
-    else if (number >= 1000000) return (number / 1000000).toFixed(1) + "M";
+    if (number >= 10000 && number < 1000000){ return Math.floor(number / 1000) + "K"; }
+    else if (number >= 1000000){ return (number / 1000000).toFixed(1) + "M"; }
     else return number.toLocaleString();
 }
 
