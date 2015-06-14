@@ -1,6 +1,6 @@
 {
   "name": "Pages2Repo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A chrome extension to open github repos from github pages",
   "license": "Unlicense",
   "author": "Joel Kuntz",
