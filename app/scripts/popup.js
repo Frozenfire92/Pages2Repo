@@ -1,5 +1,3 @@
-'use strict';
-
 //--- Start Google Analytics
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-63782941-1']);
