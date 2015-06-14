@@ -4,29 +4,24 @@
         <meta charset="utf-8">
         <title>Pages 2 Repo</title>
         <link rel="stylesheet" href="lib/octicons/octicons/octicons.css">
-        <link href="styles/signin.css" rel="stylesheet">
+        <link href="styles/token.css" rel="stylesheet">
         <link href="styles/github-buttons.css" rel="stylesheet">
-
-        <script src="scripts/github.js"></script>
     </head>
     <body>
 
-        <div id="signin-container">
+        <div id="token-container">
             <h1>Pages 2 Repo</h1>
-            <p>We require you to sign in to <span class="mega-octicon octicon-logo-github" style="vertical-align:bottom;"></span>&nbsp;to avoid hitting API limits</p>
+            <p>We require you to create a personal access toekn to avoid hitting API limits. <a target="_blank" href="https://github.com/settings/tokens/new?scopes=&description=Pages%202%20Repo%20Chrome%20Extension">Click here</a> to create a token with no scopes selected. Then paste the generated token below</p>
 
-            <a id="signin" class="button big"><span class="mega-octicon octicon-sign-in" style="vertical-align:bottom;"></span>&nbsp;Sign in</a>
+            <input type="text" id="token" placeholder="a5y77j1d449c248gy32e9b4a71ff3da1g38sd99a">
+            <br><br>
+            <a id="save" class="button big">Save Token</a>
         </div>
 
         <div id="good">
             <h1>Pages 2 Repo</h1>
-            <p>Signin successful, carry on to some great <span class="mega-octicon octicon-logo-github" style="vertical-align:bottom;"></span>&nbsp;pages!</p>
+            <p>Token saved, carry on to some great <span class="mega-octicon octicon-logo-github" style="vertical-align:bottom;"></span>&nbsp;pages!</p>
             <p><small>(Feel free to close this tab)<small></p>
-        </div>
-
-        <div id="error">
-            <h1>Pages 2 Repo</h1>
-            <p>Signin failed, please try again</p>
         </div>
 
         <div class="bottom-stats">
@@ -36,6 +31,6 @@
             <a target="_blank" href="https://github.com/Frozenfire92/Pages2Repo/issues"><span style="margin-left: 50px;" class="octicon octicon-issue-opened"></span>&nbsp;Issues</a>
         </div>
 
-        <script src="scripts/signin.js"></script>
+        <script src="scripts/token.js"></script>
     </body>
 </html>
