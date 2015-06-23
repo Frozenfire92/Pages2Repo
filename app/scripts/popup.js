@@ -1,14 +1,3 @@
-//--- Start Google Analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-63782941-1']);
-
-(function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-//--- End Google Analytics
-
 // Copies str to the clipboard (newest versions of chrome only I think)
 function copy(str, mimetype) {
     // console.log('copy', str, mimetype);
@@ -60,11 +49,9 @@ function getInfoFromStorage(){
                 // Clone button listeners
                 document.getElementById("ssh-link").addEventListener('click', function(){
                     copy(data[storageKey].ssh, "text/plain");
-                    _gaq.push(['_trackEvent', 'SSH Clone', data[storageKey].full_name]);
                 });
                 document.getElementById("https-link").addEventListener('click', function(){
                     copy(data[storageKey].https, "text/plain");
-                    _gaq.push(['_trackEvent', 'HTTPS Clone', data[storageKey].full_name]);
                 });
 
                 // Stop loading animation and show content
