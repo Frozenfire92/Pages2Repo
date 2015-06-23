@@ -52,7 +52,7 @@ function queryRepo(username, repository, tabId){
             };
 
             request.onerror = function() {
-                // console.log('Error retrieving repo info', this);
+                console.log('Error retrieving repo info', this);
             };
 
             request.send();

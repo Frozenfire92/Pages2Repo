@@ -37,9 +37,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                     queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
                 }
                 else { //Else we do have repos info
-                    // If older than a day
+                    // If older than a day query repo
                     if (Date.now() - data[storageKey].time_accessed >= 86400000){
-                        //Query repo
                         queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
                     } else { // Else under a day old
                         //Set the title of the page action
