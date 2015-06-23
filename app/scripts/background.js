@@ -1,18 +1,5 @@
-//--- Start Google Analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-63782941-1']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-//--- End Google Analytics
 
 chrome.runtime.onInstalled.addListener(function (details) {
-    // Send update/install info to google
-    if (details.previousVersion){ _gaq.push(['_trackEvent', 'Updated from', details.previousVersion]); }
-    else { _gaq.push(['_trackEvent', 'Installed at', chrome.runtime.getManifest().version]); }
 
     chrome.storage.sync.get('token', function(token){
         // No token, retrieve
@@ -54,10 +41,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                     // If older than a day
                     if (Date.now() - data[storageKey].time_accessed >= 86400000){
                         //Query repo
-                        _gaq.push(['_trackEvent', 'Repo is old, update info', Date.now() - data[storageKey].time_accessed]);
                         queryRepo(userRepoObj.username, userRepoObj.repo, tabId);
                     } else { // Else under a day old
-                        _gaq.push(['_trackEvent', 'Repo is fresh, keep info', data[storageKey].full_name]);
                         //Set the title of the page action
                         chrome.pageAction.setTitle({
                             tabId: tabId,

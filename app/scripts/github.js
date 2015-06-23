@@ -1,13 +1,3 @@
-//--- Start Google Analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-63782941-1']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-//--- End Google Analytics
 
 function queryRepo(username, repository, tabId){
     chrome.storage.sync.get('token', function(token){
@@ -49,8 +39,6 @@ function queryRepo(username, repository, tabId){
                         time_accessed: Date.now()
                     };
 
-                    _gaq.push(['_trackEvent', 'queryRepo success', response.full_name]);
-
                     var repoObj = {};
                     repoObj[full_name] = storageObj;
                     // console.log('repoObj', repoObj);
@@ -61,13 +49,11 @@ function queryRepo(username, repository, tabId){
                     });
                 } else {
                     // console.log('Error retrieving repo info', this);
-                    _gaq.push(['_trackEvent', 'queryRepo error', JSON.stringify(this)]);
                 }
             };
 
             request.onerror = function() {
                 // console.log('Error retrieving repo info', this);
-                _gaq.push(['_trackEvent', 'queryRepo error', JSON.stringify(this)]);
             };
 
             request.send();
