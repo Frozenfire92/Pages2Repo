@@ -1,0 +1,10 @@
+{
+    "disallowEmptyBlocks": true,
+    "disallowMixedSpacesAndTabs": true,
+    "esnext": false, // If you use ES6 http://jscs.info/overview.html#esnext
+    "requireCurlyBraces": [ "if" ],
+    "requireLineFeedAtFileEnd": true,
+    "validateLineBreaks": "LF",
+    "validateIndentation": 4,
+    "verbose": true // If you need output with rule names http://jscs.info/overview.html#verbose
+}
