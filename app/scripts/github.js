@@ -47,7 +47,7 @@ function queryRepo(username, repository, tabId){
                         chrome.pageAction.show(tabId);
                     });
                 } else {
-                    // console.log('Error retrieving repo info', this);
+                    console.log('Error retrieving repo info', this);
                 }
             };
 
